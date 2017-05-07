@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container text-center">
+<div class="container">
 <div class="row">
   <div class="col-sm-3 well">
     <div class="well">
@@ -32,7 +32,6 @@
           <p>Following: <a href="/user/{{ $user->getUsername()}}/{{ $u->getUsername()}}">{{ $u->getUsername() }}</a></p>
         @endforeach
     @endif
-
     @if(!$friend->getFollower()->count())
         <p> has no follower.</p>
     @else
@@ -43,33 +42,21 @@
     <p><a href="#">Link</a></p>
   </div>
   <div class="col-sm-7">
-
     <div class="row">
       <div class="col-sm-12">
         <div class="panel panel-default text-left">
           <div class="panel-body">
-            <p contenteditable="true">Status: Feeling Blue</p>
-            <button type="button" class="btn btn-default btn-sm">
-              <span class="glyphicon glyphicon-thumbs-up"></span> Like
-            </button>
+            @if(($user->getUsername() == $friend->getUsername()))
+             @include('user/post')
+            @endif
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="well">
-         <p>John</p>
-         <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-        </div>
-      </div>
-      <div class="col-sm-9">
-        <div class="well">
-          <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-        </div>
-      </div>
-    </div>
+    @include('public.sharedStatuses')
+    @include('public.followingsStatuses')
+
     <div class="row">
       <div class="col-sm-3">
         <div class="well">
@@ -79,7 +66,7 @@
       </div>
       <div class="col-sm-9">
         <div class="well">
-          <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+
         </div>
       </div>
     </div>
@@ -108,7 +95,7 @@
           <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
         </div>
       </div>
-    </div>
+    </div>]
   </div>
   <div class="col-sm-2 well">
     <div class="thumbnail">
@@ -116,7 +103,17 @@
       <img src="paris.jpg" alt="Paris" width="400" height="300">
       <p><strong>Paris</strong></p>
       <p>Fri. 27 November 2015</p>
-      <a href="/request/{{ $user->getUsername()}}/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Follow</a>
+    @if(!($user->getUsername() == $friend->getUsername()))
+      @if($friend->getFollower()->count())
+        @if(!$friend->getFollower()->pluck('username')->contains($user->getUsername()))
+            <a href="/request/{{ $user->getUsername()}}/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Follow</a>
+        @else
+            <a href="/unfollowrequest/{{ $user->getUsername()}}/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Unfollow</a>
+        @endif
+      @else
+        <a href="/request/{{ $user->getUsername()}}/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Follow</a>
+      @endif
+    @endif
     </div>
     <div class="well">
       <p>ADS</p>

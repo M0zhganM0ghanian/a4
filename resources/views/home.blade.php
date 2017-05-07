@@ -14,7 +14,7 @@
                 <div class="panel-heading">Find Friends</div>
 
                 <div class="panel-body">
-                  <form method='POST' action='/search/{{ Auth::user()->username }}'>
+                  <form method='POST' action='/search'>
                     {{ csrf_field() }}
 
                     <div class="form-group">

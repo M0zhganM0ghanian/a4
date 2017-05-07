@@ -20,8 +20,25 @@ class RequestController extends Controller
       if(!$friend){
         echo "User not found!";
       }
-      $user->following()->save($friend);
+      $user->following()->attach($friend);
       return redirect()->action(
       'ProfileController@getProfile', array( $userUsername, $friendUsername));
+    }
+
+    public function unfollowRequest($userUsername, $friendUsername){
+
+      $user = User::where('username', $userUsername)->first();
+      if(!$user){
+        echo "User not found!";
+      }
+
+      $friend = User::where('username', $friendUsername)->first();
+      if(!$friend){
+        echo "User not found!";
+      }
+      $user->following()->detach($friend);
+      return redirect()->action(
+      'ProfileController@getProfile', array( $userUsername, $friendUsername));
+
     }
 }

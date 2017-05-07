@@ -4,7 +4,7 @@
     <img src=" " alt="image" class="media-object" style="width:60px">
   </div>
   <div class="media-body">
-    <h4 class="media-heading">{{ $result->getName()}}</h4>
-    <p>...Notes...</p>
+    <h4 class="media-heading">{{ $result->getUsername()}}</h4>
+    <p>{{ $result->getName()}}</p>
   </div>
 </div>

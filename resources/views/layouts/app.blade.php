@@ -70,6 +70,8 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+
+                                    <li><a href="/findfriend">Search</a></li>
                                 </ul>
                             </li>
                         @endif

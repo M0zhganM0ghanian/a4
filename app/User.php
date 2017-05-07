@@ -43,6 +43,10 @@ class User extends Authenticatable
       return $this->belongsToMany('App\User', 'follower_user', 'friend_id', 'user_id')->withTimestamps();
     }
 
+    public function statuses() {
+      return $this->hasMany('App\Status', 'user_id');
+    }
+
     public function getFollowing(){
       return $this->following()->get();
     }
