@@ -9,7 +9,7 @@ use Auth;
 
 class ProfileController extends Controller
 {
-    public function getProfile($userUsername, $friendUsername){
+    public function getProfile($userUsername, $friendUsername = 'userUsername'){
 
       #user
       $user = Auth::user();

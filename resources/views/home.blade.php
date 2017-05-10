@@ -25,6 +25,20 @@
                   </form>
                 </div>
 
+                <div class="panel-heading">Interests</div>
+
+                <div class="panel-body">
+                  <p> choose interest :</p>
+                  @foreach( $interest as $i)
+                    @if(!$user->getInterests()->pluck('name')->contains($i->getName()))
+                        <p><a href="addinterest/{{ $i->getName() }}">add</a>{{ $i->getName() }}</p>
+                    @else
+                        <p><a href="removeinterest/{{ $i->getName() }}">cancel</a>{{ $i->getName() }}</p>
+                    @endif
+                  @endforeach
+
+                </div>
+
             </div>
         </div>
     </div>

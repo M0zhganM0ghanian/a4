@@ -18,7 +18,7 @@ Route::post('/search', 'SearchController@getSearchResults');
 
 Route::get('/findfriend', 'SearchController@getSearchPage');
 
-Route::get('/user/{userUsername}/{friendUsername}', 'ProfileController@getProfile');
+Route::get('/user/{userUsername}/{friendUsername?}', 'ProfileController@getProfile');
 
 Route::get('/request/{userUsername}/{friendUsername}', 'RequestController@followRequest');
 
@@ -26,6 +26,9 @@ Route::get('/unfollowrequest/{userUsername}/{friendUsername}', 'RequestControlle
 
 Route::get('/share', 'StatusesController@shareStatuse');
 Route::post('/share', 'StatusesController@shareStatuse');
+
+Route::get('/addinterest/{interestName}', 'InterestController@getInterests');
+Route::get('/removeinterest/{interestName}', 'InterestController@removeInterests');
 
 Route::get('/show-login-status', function() {
 

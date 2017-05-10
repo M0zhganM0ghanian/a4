@@ -54,4 +54,28 @@ class User extends Authenticatable
     public function getFollower(){
       return $this->follower()->get();
     }
+
+    public function interests()
+    {
+        return $this->belongsToMany('App\Interest')->withTimestamps();
+    }
+
+    public function getInterests()
+    {
+        return $this->interests()->get();
+    }
+    public function edit($id = null) {
+        $user = User::with('follower')->find($id);
+        $followersForThisUser = [];
+        foreach($user->follower as $f) {
+            $followersForThisUser[] = $f->name;
+        }
+
+        return view('public.interests')
+            ->with([
+                'user' => $user,
+                'followersForThisUser' => $followersForThisUser,
+            ]);
+
+      }
 }

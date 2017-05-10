@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Interest;
 use Illuminate\Http\Request;
 use Auth;
 class SearchController extends Controller
@@ -18,6 +19,12 @@ class SearchController extends Controller
     }
 
     public function getSearchPage(){
-      return view('home');
+
+      $user = Auth::user();
+      $interest = Interest::all();
+      return view('home')->with([
+         'user'=> $user,
+         'interest' => $interest
+       ]);
     }
 }
