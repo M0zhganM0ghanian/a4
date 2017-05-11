@@ -26,17 +26,17 @@
         <p> has no following.</p>
     @else
         @foreach($friend->getFollowing() as $u)
-          <p>Following: <a href="/user/{{ $user->getUsername()}}/{{ $u->getUsername()}}">{{ $u->getUsername() }}</a></p>
+          <p>Following: <a href="/user/{{ $u->getUsername()}}">{{ $u->getUsername() }}</a></p>
         @endforeach
     @endif
     @if(!$friend->getFollower()->count())
         <p> has no follower.</p>
     @else
         @foreach($friend->getFollower() as $u)
-          <p>Follower: <a href="/user/{{ $user->getUsername()}}/{{ $u->getUsername()}}">{{ $u->getUsername() }}</a></p>
+          <p>Follower: <a href="/user/{{ $u->getUsername()}}">{{ $u->getUsername() }}</a></p>
         @endforeach
     @endif
-    <p><a href="#">Link</a></p>
+    <p><a href="/allusers">All Users</a></p>
   </div>
   <div class="col-sm-7">
     <div class="row">
@@ -103,12 +103,12 @@
     @if(!($user->getUsername() == $friend->getUsername()))
       @if($friend->getFollower()->count())
         @if(!$friend->getFollower()->pluck('username')->contains($user->getUsername()))
-            <a href="/request/{{ $user->getUsername()}}/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Follow</a>
+            <a href="/request/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Follow2</a>
         @else
-            <a href="/unfollowrequest/{{ $user->getUsername()}}/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Unfollow</a>
+            <a href="/unfollowrequest/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Unfollow</a>
         @endif
       @else
-        <a href="/request/{{ $user->getUsername()}}/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Follow</a>
+        <a href="/request/{{ $friend->getUsername()}}" class="btn btn-info" role="button">Follow1</a>
       @endif
     @endif
     </div>

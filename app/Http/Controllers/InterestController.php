@@ -53,8 +53,8 @@ class InterestController extends Controller
         $user->interests()->detach($interest);
 
         return redirect()->action(
-        'SearchController@getSearchPage');
-        
+        'StatusesController@getFriendSharedStatuses');
+
         #return view('public.interests')->with('user', $user);
     }
 
@@ -68,9 +68,7 @@ class InterestController extends Controller
         }
         $user->interests()->attach($interest);
 
-        return redirect()->action(
-        'SearchController@getSearchPage');
-
+        return redirect()->action('StatusesController@getFriendSharedStatuses');
 
         #return view('public.interests')->with('user', $user);
     }

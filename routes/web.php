@@ -16,13 +16,15 @@ Route::get('/', 'WelcomeController@index');
 Route::get('/search', 'SearchController@getSearchResults');
 Route::post('/search', 'SearchController@getSearchResults');
 
-Route::get('/findfriend', 'SearchController@getSearchPage');
+Route::get('/findfriend', 'StatusesController@getFriendSharedStatuses');
 
-Route::get('/user/{userUsername}/{friendUsername?}', 'ProfileController@getProfile');
+Route::get('/user/{friendUsername?}', 'ProfileController@getProfile');
 
-Route::get('/request/{userUsername}/{friendUsername}', 'RequestController@followRequest');
+Route::get('/request/{friendUsername}', 'RequestController@followRequest');
 
-Route::get('/unfollowrequest/{userUsername}/{friendUsername}', 'RequestController@unfollowRequest');
+Route::get('/unfollowrequest/{friendUsername}', 'RequestController@unfollowRequest');
+
+Route::get('/allusers', 'AllUsersController@index');
 
 Route::get('/share', 'StatusesController@shareStatuse');
 Route::post('/share', 'StatusesController@shareStatuse');

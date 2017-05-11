@@ -38,6 +38,8 @@
                   @endforeach
 
                 </div>
+                <div class="panel-heading">timeline</div>
+                  @include('public.followingsStatuses')
 
             </div>
         </div>

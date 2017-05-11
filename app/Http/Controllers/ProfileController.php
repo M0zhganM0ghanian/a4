@@ -9,12 +9,15 @@ use Auth;
 
 class ProfileController extends Controller
 {
-    public function getProfile($userUsername, $friendUsername = 'userUsername'){
+    public function getProfile( $friendUsername = ''){
 
       #user
       $user = Auth::user();
       $userId = Auth::user()->id;
 
+      if($friendUsername == ''){
+        $friendUsername = $user->getUsername();
+      }
       #find the page owener(the profile which is visiting)
       $friend = User::where('username', $friendUsername)->first();
       if(!$friend){

@@ -33,7 +33,8 @@ class HomeController extends Controller
          $username = Auth::user()->getUsername();
 
          return redirect()->action(
-           'ProfileController@getProfile', array( $username, $username));
+           'ProfileController@getProfile', ['username' => $username]);
+           #'ProfileController@getProfile', array( $username, $username));
        }
         return view('welcome');
     }

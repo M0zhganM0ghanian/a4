@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\User;
+use Auth;
 
 class RequestController extends Controller
 {
-    public function followRequest($userUsername, $friendUsername){
+    public function followRequest( $friendUsername){
 
-
-      $user = User::where('username', $userUsername)->first();
+      $username = Auth::user()->getUsername();
+      $user = User::where('username', $username)->first();
       if(!$user){
         echo "User not found!";
       }
@@ -22,12 +23,13 @@ class RequestController extends Controller
       }
       $user->following()->attach($friend);
       return redirect()->action(
-      'ProfileController@getProfile', array( $userUsername, $friendUsername));
+      'ProfileController@getProfile', ['friendUsername' => $friendUsername]);
     }
 
-    public function unfollowRequest($userUsername, $friendUsername){
+    public function unfollowRequest($friendUsername){
+      $username = Auth::user()->getUsername();
 
-      $user = User::where('username', $userUsername)->first();
+      $user = User::where('username', $username)->first();
       if(!$user){
         echo "User not found!";
       }
@@ -38,7 +40,7 @@ class RequestController extends Controller
       }
       $user->following()->detach($friend);
       return redirect()->action(
-      'ProfileController@getProfile', array( $userUsername, $friendUsername));
+      'ProfileController@getProfile', ['friendUsername' => $friendUsername]);
 
     }
 }
