@@ -16,6 +16,9 @@ Route::get('/', 'WelcomeController@index');
 Route::get('/search', 'SearchController@getSearchResults');
 Route::post('/search', 'SearchController@getSearchResults');
 
+Route::get('/searchStatus', 'SearchController@getStatusSearchResults');
+Route::post('/searchStatus', 'SearchController@getStatusSearchResults');
+
 Route::get('/findfriend', 'StatusesController@getFriendSharedStatuses');
 
 Route::get('/user/{friendUsername?}', 'ProfileController@getProfile');
@@ -24,10 +27,15 @@ Route::get('/request/{friendUsername}', 'RequestController@followRequest');
 
 Route::get('/unfollowrequest/{friendUsername}', 'RequestController@unfollowRequest');
 
-Route::get('/allusers', 'AllUsersController@index');
+Route::get('/allusers', 'AllUsersController@getAllUsers');
 
 Route::get('/share', 'StatusesController@shareStatuse');
 Route::post('/share', 'StatusesController@shareStatuse');
+
+Route::get('/updateInfo', 'PictureController@update');
+Route::post('/updateInfo', 'PictureController@update');
+
+Route::get('/userImage/{fileName}', 'StatusesController@response');
 
 Route::get('/addinterest/{interestName}', 'InterestController@getInterests');
 Route::get('/removeinterest/{interestName}', 'InterestController@removeInterests');

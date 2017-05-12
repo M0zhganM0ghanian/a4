@@ -7,7 +7,7 @@ use App\User;
 
 class AllUsersController extends Controller
 {
-  public function index(){
+  public function getAllUsers(){
     $users = User::orderBy('created_at', 'desc')
     ->get();
 

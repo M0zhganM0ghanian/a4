@@ -15,6 +15,7 @@ class ProfileController extends Controller
       $user = Auth::user();
       $userId = Auth::user()->id;
 
+
       if($friendUsername == ''){
         $friendUsername = $user->getUsername();
       }
@@ -32,9 +33,6 @@ class ProfileController extends Controller
 
       #for timeline
       $followingsId = $user->getFollowing()->pluck('id');
-      echo $userId;
-      echo $friendId;
-      echo $followingsId;
       $friendsStatuses = Status::whereIn('user_id', $followingsId)
       ->orderBy('created_at', 'desc')
       ->get();

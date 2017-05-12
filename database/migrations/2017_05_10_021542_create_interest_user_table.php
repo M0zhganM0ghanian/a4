@@ -20,6 +20,7 @@ class CreateInterestUserTable extends Migration
           $table->integer('user_id')->unsigned();
           $table->integer('interest_id')->unsigned();
 
+
           # Make foreign keys
           $table->foreign('user_id')->references('id')->on('users');
           $table->foreign('interest_id')->references('id')->on('interests');

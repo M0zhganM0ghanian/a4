@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Auth;
 use App\Status;
 use App\Interest;
+use Image;
 
 class StatusesController extends Controller
 {
@@ -29,8 +32,6 @@ class StatusesController extends Controller
     $userId = Auth::user()->id;
     $userStatuses = Status::where('user_id', '=', $userId)->get();
     $followingsId = $user->getFollowing()->pluck('id');
-    echo $userId;
-    echo $followingsId;
     $friendsStatuses = Status::whereIn('user_id', $followingsId)
                     ->get();
     #I dont need these lines)
@@ -38,20 +39,12 @@ class StatusesController extends Controller
 
     #for timeline just added
     $followingsId = $user->getFollowing()->pluck('id');
-    echo $userId;
-    echo $followingsId;
     $friendsStatuses = Status::whereIn('user_id', $followingsId)
     ->orderBy('created_at', 'desc')
     ->get();
 
-
     return redirect()->action(
       'ProfileController@getProfile', ['username' => $username]);
-
-      #return view('home')->with([
-      #  'user'=> $user,
-      #  'friendsStatuses' => $friendsStatuses,
-      #]);
     }
 
     public function getFriendSharedStatuses(){
@@ -64,11 +57,8 @@ class StatusesController extends Controller
 
       #for timeline just added
       $followingsId = $user->getFollowing()->pluck('id');
-      echo $followingsId;
-
       $userAndFollowingId = $followingsId->merge($userId);
-      echo $userAndFollowingId;
-      
+
       $friendsStatuses = Status::whereIn('user_id', $userAndFollowingId)
       ->orderBy('created_at', 'desc')
       ->get();

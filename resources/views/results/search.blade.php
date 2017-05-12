@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Search
+@endsection
+
 @section('content')
   <div class="container">
    <h2>Your Search Results for "{{ Request::input('findFriends')}}"</h2>
@@ -15,7 +19,7 @@
 
     @foreach($findFriends as $result)
     <div class="list-group-item">
-      <a href="/user/{{ $username}}/{{ $result->getUsername()}}">@include('user/searchResult')</a><a href="#" class="btn btn-info" role="button">Follow</a>
+      <a href="/user/{{ $result->getUsername()}}">@include('user/searchResult')</a>
     </div>
     @endforeach
 
