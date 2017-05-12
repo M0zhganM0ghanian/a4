@@ -7,12 +7,10 @@
           <img src="/uploads/pictures/{{ $status->user->getPicture() }}" class="media-object" style="width:60px">
         </div>
         <div class="media-body">
-          <h4 class="media-heading">{{ $status->user->getUsername() }}</h4>
+          <h4 class="media-heading"><strong>{{ $status->user->getUsername() }}</strong></h4>
           <p>{{  $status->getText() }}</p>
           <ul class="list-inline">
-            <li>2 days ago</li>
-            <li><a href=""><span class="glyphicon glyphicon-thumbs-up"></span></a></li>
-            <li>10 likes</li>
+            <li>{{ $status->created_at->diffForHumans()}}</li>
           </ul>
         </div>
       </div>

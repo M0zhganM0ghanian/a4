@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-sm-3 well">
     <div class="well">
-      <h4>{{ $friend->getUsername() }}</h4>
+      <h4><strong>{{ $friend->getUsername() }}</strong></h4>
       <img src="/uploads/pictures/{{ $friend->getPicture() }}" class="img-circle" height="200" width="200" alt="Avatar">
       <hr>
       @if(($user->getUsername() == $friend->getUsername()))

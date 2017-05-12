@@ -16,8 +16,8 @@
                       <div class="form-group">
                         <label>Looking for particulare status? Find it here!</label>
                         <input type='text' class="form-control" name='findStatus' required  id='findFriends' placeholder="Enter Some Keywords">
-                        <input type='submit' id='btn' class="btn btn-info" value="Submit">
                       </div>
+                      <input type='submit' id='btn' class="btn btn-info" value="Submit">
                     </form>
                   </div>
               </div>
