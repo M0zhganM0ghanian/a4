@@ -11,7 +11,7 @@
           <p>{{  $status->getText() }}</p>
           <ul class="list-inline">
             <li>2 days ago</li>
-            <li><a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a></li>
+            <li><a href=""><span class="glyphicon glyphicon-thumbs-up"></span></a></li>
             <li>10 likes</li>
           </ul>
         </div>
