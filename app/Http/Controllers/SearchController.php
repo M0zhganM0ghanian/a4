@@ -22,9 +22,14 @@ class SearchController extends Controller
 
     public function getStatusSearchResults(Request $request){
 
+      $user = Auth::user();
       $username = Auth::user()->getUsername();
+      $followingsId = $user->getFollowing()->pluck('id');
+      $userId = Auth::user()->id;
+      $userAndFollowingId = $followingsId->merge($userId);
+
       $keyword = $request->input('findStatus');
-      $statusSearchResult = Status::where('text', 'LIKE', "%{$keyword}%")->get();
+      $statusSearchResult = Status::where('text', 'LIKE', "%{$keyword}%")->whereIn('user_id', $userAndFollowingId)->get();
       return view('results.statusSearch')->with([
          'statusSearchResult'=> $statusSearchResult,
          'username' => $username
